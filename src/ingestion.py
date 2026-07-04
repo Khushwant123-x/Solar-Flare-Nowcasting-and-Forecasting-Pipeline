@@ -11,6 +11,7 @@ def load_solexs_from_zip(zip_path, file_in_zip=None):
     Load SoLEXS light curve data from a raw ZIP archive.
     If file_in_zip is None, it searches for the first '.lc.gz' file in the zip.
     """
+    zip_path = os.path.normpath(zip_path)
     if not os.path.exists(zip_path):
         raise FileNotFoundError(f"ZIP archive not found: {zip_path}")
         
@@ -41,6 +42,7 @@ def load_helios_from_zip(zip_path, file_in_zip=None, detector='czt1', band='18.0
     Load HEL1OS light curve data from a raw ZIP archive for a specific detector and energy band.
     Detectors can be: 'czt1', 'czt2', 'cdte1', 'cdte2'
     """
+    zip_path = os.path.normpath(zip_path)
     if not os.path.exists(zip_path):
         raise FileNotFoundError(f"ZIP archive not found: {zip_path}")
         

@@ -66,7 +66,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Helper function to locate files in raw data directory
-RAW_DATA_DIR = r"c:\Users\Jyoti\OneDrive\Desktop\solarflare_ai\data\raw"
+RAW_DATA_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), "data", "raw"))
 
 # Cache real data loading to make dashboard fast
 @st.cache_data(show_spinner="Loading real Aditya-L1 data...")
@@ -90,6 +90,9 @@ def load_real_data(day_selected):
             helios_file = "2026/06/16/HLS_20260616_115959_43192sec_lev1_V111/czt/lightcurve_czt1.fits"
         else:
             return None, "Invalid day selection."
+
+        solexs_zip = os.path.normpath(solexs_zip)
+        helios_zip = os.path.normpath(helios_zip)
 
         # Load SoLEXS
         df_solexs = load_solexs_from_zip(solexs_zip, solexs_file)
