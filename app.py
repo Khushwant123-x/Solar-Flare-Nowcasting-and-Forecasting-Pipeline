@@ -95,6 +95,13 @@ def load_real_data(day_selected):
         solexs_zip = os.path.normpath(solexs_zip)
         helios_zip = os.path.normpath(helios_zip)
 
+        if not os.path.isfile(solexs_zip) or not os.path.isfile(helios_zip):
+            return None, (
+                "Data files not found. Raw ZIP archives (~429MB) are excluded from "
+                "the repository via .gitignore and are not deployed on Streamlit Cloud. "
+                "To use real data, run the app locally with the ZIP files in data/raw/."
+            )
+
         # Load SoLEXS
         df_solexs = load_solexs_from_zip(solexs_zip, solexs_file)
         # Load HEL1OS
@@ -156,8 +163,8 @@ if data_source == "Real ISSDC PRADAN Data":
     # Load Real Data
     df, err = load_real_data(day_selected)
     if err:
-        st.sidebar.error(f"Error loading files: {err}")
-        st.info("Falling back to synthetic data.")
+        st.sidebar.warning("Real data not available — using synthetic data instead.")
+        st.info(f"**Note:** {err}")
         df = generate_synthetic_data(duration_days=3)
 else:
     # Synthetic Generator configurations
