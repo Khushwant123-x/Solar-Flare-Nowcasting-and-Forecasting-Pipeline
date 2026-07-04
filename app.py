@@ -66,7 +66,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Helper function to locate files in raw data directory
-RAW_DATA_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), "data", "raw"))
+_APP_DIR = os.path.dirname(os.path.abspath(__file__))
+RAW_DATA_DIR = os.path.normpath(os.path.join(_APP_DIR, "data", "raw"))
 
 # Cache real data loading to make dashboard fast
 @st.cache_data(show_spinner="Loading real Aditya-L1 data...")
