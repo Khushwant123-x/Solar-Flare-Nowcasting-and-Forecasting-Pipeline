@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Data directories (ignore raw zip files, allow directory structure)
+data/raw/*.zip
+data/raw/**/*.zip
+
+# IDEs
+.vscode/
+.idea/
